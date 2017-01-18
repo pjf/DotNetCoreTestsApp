@@ -1,4 +1,5 @@
 ﻿using System;
+using Xunit;
 
 namespace ConsoleApplication
 {
@@ -6,7 +7,27 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var sut = new SystemUnderTest();
+            var hello = sut.HelloWorld();
+            Console.WriteLine(hello);
+        }
+    }
+
+    public class SystemUnderTest
+    {
+        public string HelloWorld()
+        {
+            return "Hello World!";
+        }
+    }
+
+    public class TestClass
+    {
+        [Fact]
+        public void TestMethod()
+        {
+            var sut = new SystemUnderTest();
+            Assert.Equal("Hello World!", sut.HelloWorld());
         }
     }
 }
